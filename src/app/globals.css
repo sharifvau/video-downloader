@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+
+body {
+  min-height: 100dvh;
+  color: #1e1b3a;
+  background: #f4f0ff;
+  -webkit-tap-highlight-color: transparent;
+}
+.dark body { color: #ece9ff; background: #0b0720; }
+
+.bg-aurora {
+  position: fixed; inset: 0; z-index: -2; background-size: 300% 300%;
+  background-image: linear-gradient(120deg, #e9e0ff, #d6ecff, #ffe1f0, #d9fbff, #ffe9d2, #e9e0ff);
+  animation: shift 24s ease infinite;
+}
+.dark .bg-aurora {
+  background-image: linear-gradient(120deg, #0b0720, #1a0f3d, #08203a, #2a0f35, #0b0720);
+}
+@keyframes shift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+.orb { position: fixed; z-index: -1; border-radius: 9999px; filter: blur(60px); opacity: .55; animation: float 18s ease-in-out infinite; pointer-events: none; }
+.dark .orb { opacity: .35; }
+@keyframes float { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(30px,-40px,0) scale(1.1); } }
+
+.glass {
+  background: rgba(255,255,255,.58);
+  border: 1px solid rgba(255,255,255,.7);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 10px 40px -12px rgba(124,58,237,.25);
+}
+.dark .glass { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); box-shadow: 0 10px 40px -12px rgba(0,0,0,.6); }
+
+.glow-input:focus-within { box-shadow: 0 0 0 2px rgba(167,139,250,.7), 0 0 40px -4px rgba(56,189,248,.55); }
+.grad-text { background: linear-gradient(90deg,#8b5cf6,#38bdf8,#ec4899,#fb923c); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% auto; animation: shift 8s linear infinite; }
+.grad-btn { background-image: linear-gradient(90deg,#8b5cf6,#38bdf8 55%,#ec4899); }
+.shimmer { background: linear-gradient(90deg, rgba(139,92,246,.12), rgba(56,189,248,.28), rgba(139,92,246,.12)); background-size: 200% 100%; animation: sh 1.4s linear infinite; }
+@keyframes sh { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}

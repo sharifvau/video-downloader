@@ -1,0 +1,17 @@
+services:
+  emon-downloader:
+    build: .
+    image: emon-downloader:latest
+    container_name: emon-downloader
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      YTDLP_ENABLED: "true"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
